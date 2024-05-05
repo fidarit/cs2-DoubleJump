@@ -15,6 +15,7 @@ namespace DoubleJumpCS2.Controllers
         public JumpController(Plugin plugin) : base(plugin)
         {
             Plugin.RegisterListener<Listeners.OnTick>(OnTick);
+            Plugin.RegisterListener<Listeners.OnMapStart>(OnMapStart);
         }
 
         private void OnTick()
@@ -26,6 +27,11 @@ namespace DoubleJumpCS2.Controllers
             {
                 OnTick(player);
             }
+        }
+
+        private void OnMapStart(string name)
+        {
+            Users.Clear();
         }
 
         private void OnTick(CCSPlayerController player)
