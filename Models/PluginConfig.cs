@@ -6,5 +6,7 @@ namespace DoubleJumpCS2.Models
     {
         public int JumpsCount { get; set; } = 2;
         public float Velocity { get; set; } = 250f;
+
+        public bool AllowInstantJump { get; set; } = true;
     }
 }

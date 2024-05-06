@@ -64,7 +64,7 @@ namespace DoubleJumpCS2.Controllers
             {
                 userInfo.JumpsCount++;
 
-                if (!wasGrounded && playerPawn.CanForceJump())
+                if (!wasGrounded && (Config.AllowInstantJump || playerPawn.CanForceJump()))
                     playerPawn.ForceJump(Config.Velocity);
             }
 
