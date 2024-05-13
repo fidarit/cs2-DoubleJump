@@ -8,5 +8,10 @@ namespace DoubleJumpCS2.Models
         public float Velocity { get; set; } = 250f;
 
         public bool AllowInstantJump { get; set; } = true;
+
+        /// <summary>
+        /// If <see cref="RequiredPermission"/> is empty, everyone can use multiple jump
+        /// </summary>
+        public string RequiredPermission { get; set; } = "@css/vip";
     }
 }

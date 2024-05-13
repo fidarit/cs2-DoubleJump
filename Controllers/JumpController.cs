@@ -1,5 +1,6 @@
 ﻿using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Core;
+using CounterStrikeSharp.API.Modules.Admin;
 using CounterStrikeSharp.API.Modules.Utils;
 using DoubleJumpCS2.Extensions;
 using DoubleJumpCS2.Models;
@@ -38,6 +39,9 @@ namespace DoubleJumpCS2.Controllers
         {
             var playerPawn = player.PlayerPawn.Value;
             if (playerPawn == null)
+                return;
+
+            if (!string.IsNullOrWhiteSpace(Config.RequiredPermission) && !AdminManager.PlayerHasPermissions(player))
                 return;
 
             var userId = player.UserId;
