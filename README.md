@@ -17,16 +17,16 @@ The configuration file can be found at the following path: `addons\counterstrike
 {
   "JumpsCount": 2,
   "Velocity": 250.0,
-  "AllowInstantJump": true
+  "AllowInstantJump": true,
   "RequiredPermission": "@css/vip"
 }
 ```
 
 ### Configuration Options:
-- **JumpsCount**: Specifies the maximum number of consecutive jumps allowed. Default value is `2`.  
-- **Velocity**: Sets the velocity of the double jump. Default value is `250.0`.  
-- **AllowInstantJump**: Determines whether instant double jumps are allowed. When set to `false`, the next jump can only be performed when the player has started falling. Default value is `true`.  
-- **RequiredPermission**: Specifies the required permission level for using the double jump feature. If empty, all players are granted access. Default value is `"@css/vip"`.
+- **JumpsCount**: Specifies the maximum number of consecutive jumps allowed.
+- **Velocity**: Sets the velocity of the double jump.
+- **AllowInstantJump**: Determines whether instant double jumps are allowed. When set to `false`, the next jump can only be performed when the player has started falling.
+- **RequiredPermission**: Specifies the required permission level for using the double jump feature. If both is empty, all players are granted access.
 
 ## Requirements
 - [Metamod:Source](https://www.sourcemm.net/downloads.php/?branch=master)

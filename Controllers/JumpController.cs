@@ -41,7 +41,7 @@ namespace DoubleJumpCS2.Controllers
             if (playerPawn == null)
                 return;
 
-            if (!string.IsNullOrWhiteSpace(Config.RequiredPermission) && !AdminManager.PlayerHasPermissions(player))
+            if (!string.IsNullOrWhiteSpace(Config.RequiredPermission) && !AdminManager.PlayerHasPermissions(player, Config.RequiredPermission))
                 return;
 
             var userId = player.UserId;
