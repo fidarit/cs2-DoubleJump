@@ -62,13 +62,16 @@ namespace DoubleJumpCS2.Controllers
 
             if (isGrounded)
                 userInfo.JumpsCount = 0;
+            else if (userInfo.JumpsCount < 1)
+                userInfo.JumpsCount = 1;
 
-            else if (!jumpWasPressed && jumpIsPressed 
+            if (!jumpWasPressed && jumpIsPressed
+                && !wasGrounded && !isGrounded
                 && userInfo.JumpsCount < Config.JumpsCount)
             {
                 userInfo.JumpsCount++;
 
-                if (!wasGrounded && (Config.AllowInstantJump || playerPawn.CanForceJump()))
+                if (Config.AllowInstantJump || playerPawn.CanForceJump())
                     playerPawn.ForceJump(Config.Velocity);
             }
 
