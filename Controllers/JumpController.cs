@@ -1,6 +1,7 @@
 ﻿using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Core;
 using CounterStrikeSharp.API.Modules.Admin;
+using CounterStrikeSharp.API.Modules.Commands;
 using CounterStrikeSharp.API.Modules.Utils;
 using DoubleJumpCS2.Extensions;
 using DoubleJumpCS2.Models;
@@ -18,20 +19,27 @@ namespace DoubleJumpCS2.Controllers
             Plugin.RegisterListener<Listeners.OnTick>(OnTick);
             Plugin.RegisterListener<Listeners.OnMapStart>(OnMapStart);
 
-            Plugin.AddCommand("dj", "A command to enable/disable Double jump", (player, info) =>
+            Plugin.AddCommand("dj", "A command to enable/disable Double jump", OnCommand);
+        }
+
+        public void OnCommand(CCSPlayerController player, CommandInfo info)
+        {
+            if (player == null)
+                return;
+
+            var userId = player.UserId;
+            if (!Users.TryGetValue(userId, out var userInfo))
             {
-                if (player == null) 
-                    return;
+                userInfo = new();
+                Users.Add(userId, userInfo);
+            }
 
-                var userId = player.UserId;
-                if (!Users.TryGetValue(userId, out var userInfo))
-                {
-                    userInfo = new();
-                    Users.Add(userId, userInfo);
-                }
+            userInfo.DoubleJumpEnabled = !userInfo.DoubleJumpEnabled;
 
-                userInfo.DoubleJumpEnabled = !userInfo.DoubleJumpEnabled;
-            });
+            if (userInfo.DoubleJumpEnabled)
+                player.PrintMessageToCenter(Plugin, "dj.enabled");
+            else
+                player.PrintMessageToCenter(Plugin, "dj.disabled");
         }
 
         private void OnTick()
