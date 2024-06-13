@@ -17,6 +17,21 @@ namespace DoubleJumpCS2.Controllers
         {
             Plugin.RegisterListener<Listeners.OnTick>(OnTick);
             Plugin.RegisterListener<Listeners.OnMapStart>(OnMapStart);
+
+            Plugin.AddCommand("dj", "A command to enable/disable Double jump", (player, info) =>
+            {
+                if (player == null) 
+                    return;
+
+                var userId = player.UserId;
+                if (!Users.TryGetValue(userId, out var userInfo))
+                {
+                    userInfo = new();
+                    Users.Add(userId, userInfo);
+                }
+
+                userInfo.DoubleJumpEnabled = !userInfo.DoubleJumpEnabled;
+            });
         }
 
         private void OnTick()
@@ -65,7 +80,8 @@ namespace DoubleJumpCS2.Controllers
             else if (userInfo.JumpsCount < 1)
                 userInfo.JumpsCount = 1;
 
-            if (!jumpWasPressed && jumpIsPressed
+            if (userInfo.DoubleJumpEnabled
+                && !jumpWasPressed && jumpIsPressed
                 && !wasGrounded && !isGrounded
                 && userInfo.JumpsCount < Config.JumpsCount)
             {
