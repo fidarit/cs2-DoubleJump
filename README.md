@@ -7,6 +7,7 @@
 CS2 implementation of double jump plugin written in C# for CounterStrikeSharp. Based on the version for CS:GO by FoxSerito.
 
 ## Features
+- [x] Enabling\disabling mod via `dj` command
 - [x] Setting jump counts via config or `dj_count` command
 - [x] Setting jump velocity via config or `dj_velocity` command
 
