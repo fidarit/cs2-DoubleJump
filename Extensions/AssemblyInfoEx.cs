@@ -7,7 +7,8 @@ namespace DoubleJumpCS2.Extensions
         public static string GetVersion()
         {
             return typeof(AssemblyInfoEx).Assembly
-                .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+                .GetCustomAttribute<AssemblyInformationalVersionAttribute>()
+                .InformationalVersion;
         }
 
         public static string GetAuthor()
